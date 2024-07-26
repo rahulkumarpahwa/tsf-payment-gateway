@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const paymentRoutes = require("./routes/paymentRoutes");
 
 app.use(
   cors({
@@ -13,9 +14,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.json({ message: "Server has been Started.", status: 200, success: true });
-});
+app.use("/", paymentRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is listening at Port ${process.env.PORT}`);
